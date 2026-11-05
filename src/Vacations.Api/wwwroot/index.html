@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Horizon Getaways</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="datadog-rum-config.js"></script>
+  <script src="datadog-rum.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">
+      <span class="brand-mark" aria-hidden="true">◐</span> Horizon Getaways
+    </a>
+    <nav>
+      <a href="#explore">Explore</a>
+      <a href="#trips">My trips</a>
+      <button class="link-button" type="button" data-open-chat>Ask our assistant</button>
+    </nav>
+  </header>
+
+  <section class="hero" id="explore">
+    <div class="hero-copy">
+      <h1>Find your next escape</h1>
+      <p>Hand-picked resorts, lodges and villas around the world. Check live availability and book in seconds.</p>
+    </div>
+
+    <form class="search" id="search-form">
+      <label class="field grow">
+        <span>Where</span>
+        <input name="q" type="search" placeholder="Beach, Japan, ski, safari…" autocomplete="off">
+      </label>
+      <label class="field">
+        <span>Type</span>
+        <select name="category">
+          <option value="">Any</option>
+          <option value="BEACH">Beach</option>
+          <option value="ISLAND">Island</option>
+          <option value="MOUNTAIN">Mountain</option>
+          <option value="CITY">City</option>
+          <option value="COUNTRYSIDE">Countryside</option>
+          <option value="SAFARI">Safari</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Check-in</span>
+        <input name="checkIn" type="date" required>
+      </label>
+      <label class="field">
+        <span>Check-out</span>
+        <input name="checkOut" type="date" required>
+      </label>
+      <label class="field narrow">
+        <span>Guests</span>
+        <input name="guests" type="number" min="1" max="20" value="2" required>
+      </label>
+      <button class="primary" type="submit">Search</button>
+    </form>
+  </section>
+
+  <main>
+    <section class="results-section">
+      <div class="section-head">
+        <h2 id="results-title">Destinations</h2>
+        <p class="muted" id="results-meta"></p>
+      </div>
+      <p class="notice error" id="search-error" hidden></p>
+      <div class="grid" id="results" aria-live="polite"></div>
+    </section>
+
+    <section class="trips" id="trips">
+      <div class="section-head">
+        <h2>My trips</h2>
+        <p class="muted">Enter the email you booked with to see and manage your reservations.</p>
+      </div>
+      <form class="trips-form" id="trips-form">
+        <input name="email" type="email" placeholder="you@example.com" required autocomplete="email">
+        <button class="secondary" type="submit">Find my trips</button>
+      </form>
+      <p class="notice error" id="trips-error" hidden></p>
+      <div class="trip-list" id="trip-list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Horizon Getaways demo · ASP.NET Core on IIS · Oracle XE · Claude-powered assistant</p>
+  </footer>
+
+  <dialog class="modal" id="booking-dialog">
+    <form method="dialog" class="modal-body" id="booking-form">
+      <header class="modal-head">
+        <h3 id="booking-title">Book your stay</h3>
+        <button class="icon-button" value="cancel" formnovalidate aria-label="Close">✕</button>
+      </header>
+      <div class="booking-summary" id="booking-summary"></div>
+      <label class="field">
+        <span>Full name</span>
+        <input name="guestName" required minlength="2" maxlength="100" autocomplete="name">
+      </label>
+      <label class="field">
+        <span>Email</span>
+        <input name="guestEmail" type="email" required autocomplete="email">
+      </label>
+      <p class="notice error" id="booking-error" hidden></p>
+      <footer class="modal-actions">
+        <button class="secondary" value="cancel" formnovalidate>Cancel</button>
+        <button class="primary" id="booking-submit" value="default">Confirm booking</button>
+      </footer>
+    </form>
+    <div class="modal-body confirmation" id="booking-confirmation" hidden></div>
+  </dialog>
+
+  <button class="chat-fab" type="button" data-open-chat aria-label="Open chat assistant">💬</button>
+
+  <aside class="chat" id="chat" aria-label="Travel assistant" hidden>
+    <header class="chat-head">
+      <div>
+        <strong>Travel assistant</strong>
+        <span class="muted small">Search, book and manage trips by chat</span>
+      </div>
+      <div class="chat-head-actions">
+        <button class="icon-button" type="button" id="chat-reset" title="Start a new conversation" aria-label="New conversation">↺</button>
+        <button class="icon-button" type="button" id="chat-close" aria-label="Close chat">✕</button>
+      </div>
+    </header>
+    <div class="chat-log" id="chat-log" aria-live="polite"></div>
+    <form class="chat-input" id="chat-form">
+      <textarea name="message" rows="1" placeholder="e.g. A beach trip for 2 in March under $300/night" required></textarea>
+      <button class="primary" type="submit" aria-label="Send">➤</button>
+    </form>
+  </aside>
+
+  <script src="app.js"></script>
+</body>
+</html>

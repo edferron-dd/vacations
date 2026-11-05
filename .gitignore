@@ -1,0 +1,17 @@
+bin/
+obj/
+*.user
+.vs/
+.vscode/
+
+__pycache__/
+*.pyc
+.venv/
+.env
+
+logs/
+
+# Datadog RUM credentials
+src/Vacations.Api/wwwroot/datadog-rum-config.js
+
+.DS_Store
