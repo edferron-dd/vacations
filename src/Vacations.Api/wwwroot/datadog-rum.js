@@ -11,7 +11,7 @@ if (ddConfig.applicationId && ddConfig.clientToken) {
       applicationId: ddConfig.applicationId,
       clientToken: ddConfig.clientToken,
       site: 'datadoghq.com',
-      service: 'ec2-api-demo',
+      service: 'vacations-web',
       env: 'demo',
       sessionSampleRate: 100,
       sessionReplaySampleRate: 100,

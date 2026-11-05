@@ -77,7 +77,7 @@ In Application Insights (`appi-vacations-forecast`) you can see:
 
 ## Datadog RUM and APM
 
-- **RUM:** `wwwroot/datadog-rum.js` loads the browser SDK (service `ec2-api-demo`, env `demo`, Session Replay with typed input masked). The app ID and client token are in `wwwroot/datadog-rum-config.js`. Without that file, RUM stays off.
+- **RUM:** `wwwroot/datadog-rum.js` loads the browser SDK (service `vacations-web`, env `demo`, Session Replay with typed input masked). The app ID and client token are in `wwwroot/datadog-rum-config.js`. Without that file, RUM stays off.
 - **Who the session belongs to:** there are no accounts, so each session is tagged with the guest's email (`usr.email`) when they book, look up their trips or return with a saved email.
 - **APM:** when the Datadog Agent is installed on the host, `deploy-app.ps1` installs the Datadog .NET tracer (`-DatadogTracerVersion`, default 3.57.0). It also sets `DD_SERVICE=vacations-api` and `DD_ENV=demo` on the app pool.
 - **RUM to APM:** RUM adds trace headers to same-origin `/api/` calls, so a click in RUM links to the `vacations-api` trace. That trace includes the outbound call to the forecast function.
